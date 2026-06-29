@@ -1,14 +1,14 @@
 # Sorties Du Rapport Trader
 
-Ce dossier sert à stocker les sorties dérivées utilisées par le notebook.
+Ce dossier sert a stocker les sorties derivees utilisees par le notebook.
 
-Les fichiers actuellement présents correspondent à la V1 du backtest :
+Les fichiers actuellement presents correspondent a la V1 du backtest :
 
 ```text
 macro_vwap_single_country_results_20260629_225714
 ```
 
-Ce sont des résultats dérivés, pas les fichiers de prix bruts.
+Ce sont des resultats derives, pas les fichiers de prix bruts.
 
 Structure attendue :
 
@@ -26,4 +26,4 @@ reports/trader_report/
     `-- notes courtes sur les fichiers manquants ou les choix manuels
 ```
 
-Seuls les CSV de synthèse et les PNG finaux doivent aller ici. Les fichiers de prix bruts et le fichier macro doivent rester hors du repo.
+Seuls les CSV de synthese et les PNG finaux doivent aller ici. Les fichiers de prix bruts et le fichier macro doivent rester hors du repo.

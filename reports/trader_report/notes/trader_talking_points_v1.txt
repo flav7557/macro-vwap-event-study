@@ -1,4 +1,4 @@
-Macro + VWAP screening — US
+Macro + VWAP screening  US
 ============================================================
 
 Universe tested: 17 assets.

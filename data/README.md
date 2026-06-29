@@ -1,19 +1,19 @@
-# Données D'entrée
+# Donnees D'entree
 
-Aucune donnée brute n'est commit dans ce repo. Ce dossier documente seulement le format attendu par le moteur de backtest.
+Aucune donnee brute n'est commit dans ce repo. Ce dossier documente seulement le format attendu par le moteur de backtest.
 
-Pour ce premier screening, j'ai testé les actions avec environ 10 ans de données en timeframe 1 minute. Les fichiers minute sont lourds, donc je ne les ai pas ajoutés au repo GitHub. En plus, je préfère éviter de publier les fichiers bruts directement.
+Pour ce premier screening, j'ai teste les actions avec environ 10 ans de donnees en timeframe 1 minute. Les fichiers minute sont lourds, donc je ne les ai pas ajoutes au repo GitHub. En plus, je prefere eviter de publier les fichiers bruts directement.
 
-Si tu lis ce projet et que tu veux les fichiers exacts utilisés pour reproduire le test, envoie-moi un message et je peux te les transmettre par mail.
+Si tu lis ce projet et que tu veux les fichiers exacts utilises pour reproduire le test, envoie-moi un message et je peux te les transmettre par mail.
 
-Le moteur a besoin de deux types d'entrées :
+Le moteur a besoin de deux types d'entrees :
 
-- un fichier macro avec les publications et les métriques historiques de surprise
+- un fichier macro avec les publications et les metriques historiques de surprise
 - un CSV OHLCV minute par action
 
 ## Fichier Macro
 
-Le fichier peut être en `.xlsx` ou `.ods`. Il doit contenir deux feuilles.
+Le fichier peut etre en `.xlsx` ou `.ods`. Il doit contenir deux feuilles.
 
 ### `data`
 
@@ -23,32 +23,32 @@ Colonnes utiles :
 
 | colonne | signification |
 | --- | --- |
-| `event_date` | timestamp de publication, idéalement avec timezone |
+| `event_date` | timestamp de publication, idealement avec timezone |
 | `country` | code pays, par exemple `US` |
-| `event` | nom de l'événement macro |
+| `event` | nom de l'evenement macro |
 | `estimate` | consensus |
-| `actual` | valeur publiée |
-| `previous` | valeur précédente, si disponible |
+| `actual` | valeur publiee |
+| `previous` | valeur precedente, si disponible |
 
 ### `METRIQ_FINISH`
 
-Une ligne par type d'événement macro, avec les métriques historiques.
+Une ligne par type d'evenement macro, avec les metriques historiques.
 
 Colonnes utiles :
 
 | colonne | signification |
 | --- | --- |
 | `Country` | code pays |
-| `events` | nom de l'événement |
-| `macro_family` | famille de l'événement |
+| `events` | nom de l'evenement |
+| `macro_family` | famille de l'evenement |
 | `higher_is_good` | `YES`, `NO` ou `MIXED` |
 | `event_importance_guess` | score approximatif d'importance |
-| `valid_obs_count` | nombre d'observations utilisées |
+| `valid_obs_count` | nombre d'observations utilisees |
 | `surprise_avg_10y` | surprise moyenne historique |
-| `surprise_std_10y` | écart-type historique des surprises |
+| `surprise_std_10y` | ecart-type historique des surprises |
 | `beat_rate_10y` | part des publications au-dessus du consensus |
 
-Le z-score est vraiment propre seulement si la moyenne et l'écart-type historiques sont calculés avant la période testée. S'ils sont calculés sur la même période que le backtest, le résultat peut être trop optimiste.
+Le z-score est vraiment propre seulement si la moyenne et l'ecart-type historiques sont calcules avant la periode testee. S'ils sont calcules sur la meme periode que le backtest, le resultat peut etre trop optimiste.
 
 ## CSV De Prix Minute
 
@@ -63,10 +63,10 @@ timestamp,open,high,low,close,volume
 
 Notes :
 
-- les timestamps devraient être en UTC si possible
-- les données peuvent être clairsemées pour des actions peu liquides
-- le VWAP est calculé en intraday et remis à zéro chaque jour
-- le ticker est généralement extrait du nom du fichier
+- les timestamps devraient etre en UTC si possible
+- les donnees peuvent etre clairsemees pour des actions peu liquides
+- le VWAP est calcule en intraday et remis a zero chaque jour
+- le ticker est generalement extrait du nom du fichier
 
 Exemples de noms de fichiers :
 
@@ -76,4 +76,4 @@ irtc_dataset.csv
 sam_dataset.csv
 ```
 
-Le dossier local actuel contient des CSV bruts dans `US-Actions/`, mais ce dossier est ignoré pour éviter de le publier par erreur.
+Le dossier local actuel contient des CSV bruts dans `US-Actions/`, mais ce dossier est ignore pour eviter de le publier par erreur.
