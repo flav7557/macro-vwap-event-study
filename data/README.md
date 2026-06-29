@@ -2,6 +2,10 @@
 
 Aucune donnée brute n'est commit dans ce repo. Ce dossier documente seulement le format attendu par le moteur de backtest.
 
+Pour ce premier screening, j'ai testé les actions avec environ 10 ans de données en timeframe 1 minute. Les fichiers minute sont lourds, donc je ne les ai pas ajoutés au repo GitHub. En plus, je préfère éviter de publier les fichiers bruts directement.
+
+Si tu lis ce projet et que tu veux les fichiers exacts utilisés pour reproduire le test, envoie-moi un message et je peux te les transmettre par mail.
+
 Le moteur a besoin de deux types d'entrées :
 
 - un fichier macro avec les publications et les métriques historiques de surprise

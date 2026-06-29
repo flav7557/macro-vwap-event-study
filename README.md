@@ -111,6 +111,10 @@ Le notebook lit les CSV et les figures déjà générés. Il n'est pas censé re
 
 Les données brutes ne sont pas incluses dans le repo.
 
+Pour ce premier test, j'ai travaillé avec environ 10 ans de données minute (`1 minute timeframe`) sur les actions testées. Les fichiers sont assez lourds et je n'arrive pas à les charger proprement ici, donc je ne les mets pas directement sur GitHub.
+
+Si tu lis ce repo et que tu veux vérifier exactement les données utilisées, contacte-moi et je peux t'envoyer les fichiers par mail.
+
 Les entrées attendues sont :
 
 - un fichier macro avec actual, estimate, previous et les métriques historiques de surprise
