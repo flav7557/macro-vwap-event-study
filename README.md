@@ -1,71 +1,52 @@
 # Macro Surprise + VWAP Execution
 
-Ce repo presente mon premier screening d'actions US autour des surprises macroeconomiques et d'une execution intraday basee sur le VWAP.
+Ce repo presente mon etude sur les journees de publications macro US et une execution intraday autour du VWAP.
 
-La question de depart est simple : quand une statistique macro importante sort au-dessus ou en-dessous des attentes, est-ce que certaines actions individuelles montrent des comportements court terme exploitables avec une regle d'entree plus disciplinee autour du VWAP 
+L'idee de depart est simple : tester si certaines actions reagissent de facon assez reguliere aux surprises macro pour etre analysees avec une regle d'entree plus disciplinee autour du VWAP.
 
-Je ne veux pas presenter ca comme une strategie de trading deja prete. C'est un backtest de recherche, avec plusieurs tests de robustesse. L'interet n'est pas seulement de voir quelles actions semblent bien marcher, mais aussi de comprendre lesquelles deviennent fragiles des qu'on impose des tests aleatoires, des couts, ou un vrai decoupage chronologique train/test.
+Je ne presente pas ca comme une strategie prete a trader. C'est un travail de recherche. Le but est de separer les noms qui semblent vraiment plus robustes de ceux qui ont juste un bon backtest complet mais qui cassent quand on regarde le train/test, les tests random ou les couts.
 
-## Structure Du Repo
+## Structure du repo
 
 ```text
 macro-vwap-event-study/
 |-- README.md
 |-- requirements.txt
 |-- .gitignore
+|-- CHANGELOG.md
+|-- PROJECT_STATUS.md
 |-- scripts/
-|   |-- macro_event_backtester_single_country_20stocks.py
-|   `-- macro_event_backtester_single_country_20stocks_trader_graphs.py
+|   |-- v1_screening/
+|   |   `-- macro_event_backtester_single_country_20stocks.py
+|   |-- v2_train_test_clean/
+|   |   `-- README.md
+|   `-- reporting/
+|       `-- macro_event_backtester_single_country_20stocks_trader_graphs.py
 |-- notebooks/
-|   `-- 01_macro_vwap_research_summary.ipynb
+|   |-- 01_macro_vwap_research_summary.ipynb
+|   `-- 02_train_test_validation_update.ipynb
 |-- reports/
-|   `-- trader_report/
-|       |-- figures/
+|   |-- v1_us_screening/
+|   |   |-- csv_outputs/
+|   |   |-- figures/
+|   |   `-- notes/
+|   `-- v2_train_test_clean/
 |       |-- csv_outputs/
+|       |-- figures/
 |       `-- notes/
-`-- data/
-    `-- README.md
+|-- data/
+|   `-- README.md
+`-- archive/
+    `-- old_outputs/
 ```
 
-Les scripts Python restent le moteur du backtest. Le notebook sert de resume lisible pour une revue .
+V1 correspond au premier screening US macro + VWAP.
 
-## Ce Que Fait Le Backtest
+V2 correspond a la validation train/test plus propre.
 
-Pour chaque publication macro, le script compare la valeur publiee avec le consensus :
+## Comment lancer le backtest
 
-```text
-surprise_raw = actual - estimate
-surprise_z = (surprise_raw - historical_average_surprise) / historical_surprise_std
-signal = surprise_z * direction
-```
-
-`direction` vaut `+1` quand une valeur macro plus elevee est consideree comme positive, et `-1` quand une valeur plus faible est consideree comme positive. Les evenements marques comme `MIXED` sont exclus.
-
-Le moteur teste ensuite deux idees :
-
-- `DRIFT` : trader dans le sens du signal macro.
-- `FADE` : trader contre le signal macro.
-
-Le VWAP est utilise comme filtre d'execution. Pour un long, le modele prefere entrer quand le prix est sous ou proche du VWAP. Pour un short, il prefere entrer quand le prix est au-dessus ou proche du VWAP. Si le prix n'est pas favorable, le modele attend un retour vers le VWAP dans une fenetre definie.
-
-Une limite importante : beaucoup de publications macro US sortent avant l'ouverture des actions US. Donc il faut plutot lire cette version comme un test "jour de macro + VWAP intraday" que comme une reaction pure minute par minute au timestamp de la publication.
-
-## Tests De Robustesse
-
-Le moteur evite de garder une action seulement parce que le backtest complet est positif. Il teste :
-
-- test avec sens de trade aleatoire
-- test avec timestamp aleatoire
-- placebo avec decalage temporel
-- sweep de couts de transaction
-- split chronologique train/test
-- walk-forward par annee
-
-Le split train/test est le point le plus important. La regle est selectionnee sur les premiers 70% de la periode, puis testee sur les derniers 30%. Si une regle parait bonne sur l'echantillon complet mais perd de l'argent sur la periode de test, je la considere comme rejetee ou au minimum fragile.
-
-## Comment Lancer
-
-Installer les dependances Python :
+Installer les dependances :
 
 ```bash
 python -m venv .venv
@@ -73,69 +54,96 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-Lancer le moteur de backtest :
+Le script V1 est ici :
 
 ```bash
-python scripts/macro_event_backtester_single_country_20stocks.py
+python scripts/v1_screening/macro_event_backtester_single_country_20stocks.py
 ```
 
-Le script demande le fichier macro, le pays, puis les CSV minute des actions. Il ecrit ensuite un dossier de resultats timestampe avec des fichiers comme :
+Le script demande le fichier macro, le pays, puis les fichiers minute des actions. Il genere ensuite un dossier local de resultats avec les CSV de synthese.
 
-- `single_country_master_summary.csv`
-- `single_country_all_configs_summary.csv`
-- `single_country_random_tests.csv`
-- `single_country_train_test.csv`
-- `single_country_walk_forward.csv`
+Note importante : le script exact utilise pour produire le run V2 n'etait pas present dans les fichiers locaux fournis. Les sorties V2 sont bien archivees dans le repo, mais le code V2 exact devra etre ajoute si je le retrouve.
 
-Apres le run, copier les CSV de synthese que l'on veut partager dans :
+## Comment lire les notebooks
 
-```text
-reports/trader_report/csv_outputs/
-```
-
-Si des graphiques sont disponibles, placer les PNG retenus dans :
-
-```text
-reports/trader_report/figures/
-```
-
-La V1 actuelle du repo inclut deja les sorties du run :
-
-```text
-macro_vwap_single_country_results_20260629_225714
-```
-
-Elles sont rangees dans `reports/trader_report/csv_outputs/` et `reports/trader_report/figures/`.
-
-Puis ouvrir :
+Le notebook principal est :
 
 ```text
 notebooks/01_macro_vwap_research_summary.ipynb
 ```
 
-Le notebook lit les CSV et les figures deja generes. Il n'est pas cense relancer tout le backtest.
+Il explique l'idee de recherche, le signal macro, DRIFT vs FADE, l'execution VWAP, les tests de robustesse, puis compare V1 et V2.
+
+Le notebook centre sur la validation train/test est :
+
+```text
+notebooks/02_train_test_validation_update.ipynb
+```
+
+Il montre pourquoi un rendement full-sample positif ne suffit pas, et pourquoi certains noms sont rejetes meme s'ils avaient l'air profitables au depart.
+
+## Ou sont les resultats
+
+Resultats V1 :
+
+```text
+reports/v1_us_screening/
+```
+
+Resultats V2 :
+
+```text
+reports/v2_train_test_clean/
+```
+
+Les CSV de synthese sont dans `csv_outputs/`.
+
+Les figures du rapport sont dans `figures/`.
+
+Les notes courtes sont dans `notes/`.
 
 ## Donnees
 
-Les donnees brutes ne sont pas incluses dans le repo.
+Pour ce premier travail, j'ai teste environ 10 ans de donnees en timeframe 1 minute sur les actions. Les fichiers sont trop lourds pour etre charges ici, et je ne veux pas publier les donnees brutes directement sur GitHub.
 
-Pour ce premier test, j'ai travaille avec environ 10 ans de donnees minute (`1 minute timeframe`) sur les actions testees. Les fichiers sont assez lourds et je n'arrive pas a les charger proprement ici, donc je ne les mets pas directement sur GitHub.
+Si tu lis ce repo et que tu veux verifier les fichiers exacts utilises, contacte-moi et je peux te les envoyer par mail.
 
-Si tu lis ce repo et que tu veux verifier exactement les donnees utilisees, contacte-moi et je peux t'envoyer les fichiers par mail.
+Le format attendu est explique dans :
 
-Les entrees attendues sont :
+```text
+data/README.md
+```
 
-- un fichier macro avec actual, estimate, previous et les metriques historiques de surprise
-- un CSV OHLCV minute par action
+## Statut actuel
 
-Voir `data/README.md` pour le format attendu.
+V2 est le stade courant.
 
-## Limites Actuelles
+La validation train/test est maintenant plus stricte. En V2, les candidats les plus propres sont SMTC et VIAV. RVLV et SAM restent interessants, mais sont classes comme plus fragiles. REAL, IRTC, LMB, PLAY, VSAT, BLFS et GPRO restent plutot en watchlist car le signal semble plus VWAP-driven ou moins clairement macro-directionnel.
 
-- La version US actuelle contient beaucoup d'entrees `PRE_OPEN_SAME_DAY`, donc il faut rester honnete sur l'interpretation temporelle.
-- Les entrees VWAP en `close_cross` sont plus faciles a remplir et peuvent etre optimistes.
-- `limit_touch` est plus conservateur et doit etre teste plus en profondeur.
-- Un resultat positif sur l'echantillon complet ne suffit pas. Les tests train/test et random servent justement a rejeter les noms probablement sur-optimises.
-- Les noms de fichiers peuvent creer des problemes de presentation des tickers. Le notebook les signale au lieu de les cacher.
+## Limites principales
 
-Ce projet est un travail de recherche, pas un conseil d'investissement.
+- Beaucoup de publications macro US ont lieu avant l'ouverture du marche actions.
+- Le framework doit donc etre lu comme "macro calendar day + VWAP intraday", pas comme une reaction pure minute par minute a la publication.
+- Les entrees `close_cross` sont plus optimistes que `limit_touch`.
+- Certains tickers viennent de noms de fichiers imparfaits. Dans les notebooks, `LONDON-STRATEGIC-EDGE` est affiche comme LMB quand le fichier source correspond a LMB.
+- Il y a encore un doublon IRTC a nettoyer dans les fichiers sources.
+
+## Prochaines etapes
+
+V3 devrait se concentrer sur les meilleurs candidats :
+
+- SMTC
+- VIAV
+- RVLV
+- SAM
+- REAL
+- IRTC
+
+Tests possibles :
+
+- augmenter les simulations random a 500
+- comparer `close_cross` et `limit_touch` plus serieusement
+- regarder la performance par annee
+- regarder les types d'evenements macro les plus importants
+- comparer DRIFT vs FADE par action
+- verifier si l'edge vient du signal macro, du filtre VWAP, ou des deux
