@@ -1,10 +1,10 @@
-# Missing Derived Outputs
+# Sorties Dérivées Manquantes
 
-At cleanup time, the project did not contain the expected generated summary CSVs or PNG report figures.
+Au moment du nettoyage, le projet ne contenait pas les CSV de synthèse attendus ni les figures PNG du rapport trader.
 
-The notebook is built to load files from `reports/trader_report/csv_outputs/` and `reports/trader_report/figures/`. If those files are missing, it prints clear warnings instead of crashing.
+Le notebook est construit pour charger les fichiers depuis `reports/trader_report/csv_outputs/` et `reports/trader_report/figures/`. Si ces fichiers manquent, il affiche des avertissements clairs au lieu de planter.
 
-Expected CSV files:
+CSV attendus :
 
 - `single_country_master_summary.csv`
 - `single_country_all_configs_summary.csv`
@@ -12,4 +12,4 @@ Expected CSV files:
 - `single_country_train_test.csv`
 - `single_country_walk_forward.csv`
 
-Once the backtest has been run, copy the safe derived CSVs into `csv_outputs/` and any selected final charts into `figures/`.
+Une fois le backtest relancé, copier les CSV dérivés partageables dans `csv_outputs/` et les graphiques finaux sélectionnés dans `figures/`.

@@ -1,12 +1,12 @@
 # Macro Surprise + VWAP Execution
 
-This repo is my first US equity screening around macro surprise days and VWAP-based intraday execution.
+Ce repo présente mon premier screening d'actions US autour des surprises macroéconomiques et d'une exécution intraday basée sur le VWAP.
 
-The question is simple: when an important US macro number comes out stronger or weaker than expected, do some individual stocks show short-term patterns that can be captured with a disciplined VWAP entry rule?
+La question de départ est simple : quand une statistique macro importante sort au-dessus ou en-dessous des attentes, est-ce que certaines actions individuelles montrent des comportements court terme exploitables avec une règle d'entrée plus disciplinée autour du VWAP ?
 
-I do not want to present this as a finished trading strategy. It is a research backtest with a few robustness checks. The useful part is not only which names look good, but also which names look fragile once I force the rule to survive random tests, costs, and a chronological train/test split.
+Je ne veux pas présenter ça comme une stratégie de trading déjà prête. C'est un backtest de recherche, avec plusieurs tests de robustesse. L'intérêt n'est pas seulement de voir quelles actions semblent bien marcher, mais aussi de comprendre lesquelles deviennent fragiles dès qu'on impose des tests aléatoires, des coûts, ou un vrai découpage chronologique train/test.
 
-## Repository Structure
+## Structure Du Repo
 
 ```text
 macro-vwap-event-study/
@@ -27,11 +27,11 @@ macro-vwap-event-study/
     `-- README.md
 ```
 
-The Python scripts are the engine. The notebook is the readable research summary for review.
+Les scripts Python restent le moteur du backtest. Le notebook sert de résumé lisible pour une revue trader.
 
-## What The Backtest Does
+## Ce Que Fait Le Backtest
 
-For each macro release, the script compares the actual number with the market estimate:
+Pour chaque publication macro, le script compare la valeur publiée avec le consensus :
 
 ```text
 surprise_raw = actual - estimate
@@ -39,33 +39,33 @@ surprise_z = (surprise_raw - historical_average_surprise) / historical_surprise_
 signal = surprise_z * direction
 ```
 
-`direction` is `+1` when a higher macro value is treated as good, and `-1` when a lower value is treated as good. Events marked as mixed are excluded.
+`direction` vaut `+1` quand une valeur macro plus élevée est considérée comme positive, et `-1` quand une valeur plus faible est considérée comme positive. Les événements marqués comme `MIXED` sont exclus.
 
-The model then tests two broad ideas:
+Le moteur teste ensuite deux idées :
 
-- `DRIFT`: trade in the direction of the macro signal.
-- `FADE`: trade against the macro signal.
+- `DRIFT` : trader dans le sens du signal macro.
+- `FADE` : trader contre le signal macro.
 
-VWAP is used as an execution filter. For longs, the model prefers entries below or close to VWAP. For shorts, it prefers entries above or close to VWAP. If the price is not favorable, the model waits for a return toward VWAP inside a fixed window.
+Le VWAP est utilisé comme filtre d'exécution. Pour un long, le modèle préfère entrer quand le prix est sous ou proche du VWAP. Pour un short, il préfère entrer quand le prix est au-dessus ou proche du VWAP. Si le prix n'est pas favorable, le modèle attend un retour vers le VWAP dans une fenêtre définie.
 
-One important limitation: many US macro releases happen before the US equity open. So this should be read more as "macro calendar day + VWAP intraday" than as a pure minute-by-minute reaction to the release timestamp.
+Une limite importante : beaucoup de publications macro US sortent avant l'ouverture des actions US. Donc il faut plutôt lire cette version comme un test "jour de macro + VWAP intraday" que comme une réaction pure minute par minute au timestamp de la publication.
 
-## Robustness Checks
+## Tests De Robustesse
 
-The engine tries not to keep a stock only because the full backtest looks profitable. It checks:
+Le moteur évite de garder une action seulement parce que le backtest complet est positif. Il teste :
 
-- random side test
-- random timestamp test
-- time-shift placebo
-- transaction cost sweep
-- chronological train/test split
-- walk-forward by year
+- test avec sens de trade aléatoire
+- test avec timestamp aléatoire
+- placebo avec décalage temporel
+- sweep de coûts de transaction
+- split chronologique train/test
+- walk-forward par année
 
-The train/test split matters a lot. The rule is selected on the first 70% of the period, then tested on the final 30%. If a rule looks good in the full sample but loses money on the later test period, I treat it as rejected or at least fragile.
+Le split train/test est le point le plus important. La règle est sélectionnée sur les premiers 70% de la période, puis testée sur les derniers 30%. Si une règle paraît bonne sur l'échantillon complet mais perd de l'argent sur la période de test, je la considère comme rejetée ou au minimum fragile.
 
-## How To Run
+## Comment Lancer
 
-Install the Python dependencies:
+Installer les dépendances Python :
 
 ```bash
 python -m venv .venv
@@ -73,13 +73,13 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-Run the backtest engine:
+Lancer le moteur de backtest :
 
 ```bash
 python scripts/macro_event_backtester_single_country_20stocks.py
 ```
 
-The script asks for the macro workbook, the country, and the stock minute CSV files. It writes a timestamped results folder with files such as:
+Le script demande le fichier macro, le pays, puis les CSV minute des actions. Il écrit ensuite un dossier de résultats timestampé avec des fichiers comme :
 
 - `single_country_master_summary.csv`
 - `single_country_all_configs_summary.csv`
@@ -87,43 +87,43 @@ The script asks for the macro workbook, the country, and the stock minute CSV fi
 - `single_country_train_test.csv`
 - `single_country_walk_forward.csv`
 
-After that, copy the selected final CSVs into:
+Après le run, copier les CSV de synthèse que l'on veut partager dans :
 
 ```text
 reports/trader_report/csv_outputs/
 ```
 
-If graph outputs are available, put the selected PNG files into:
+Si des graphiques sont disponibles, placer les PNG retenus dans :
 
 ```text
 reports/trader_report/figures/
 ```
 
-Then open:
+Puis ouvrir :
 
 ```text
 notebooks/01_macro_vwap_research_summary.ipynb
 ```
 
-The notebook reads the saved CSVs and figures. It is not meant to re-run the full backtest.
+Le notebook lit les CSV et les figures déjà générés. Il n'est pas censé relancer tout le backtest.
 
-## Data
+## Données
 
-Raw data is not included in the repo.
+Les données brutes ne sont pas incluses dans le repo.
 
-Expected inputs are:
+Les entrées attendues sont :
 
-- one macro workbook with actual, estimate, previous, and historical surprise metrics
-- one minute-level OHLCV CSV per stock
+- un fichier macro avec actual, estimate, previous et les métriques historiques de surprise
+- un CSV OHLCV minute par action
 
-See `data/README.md` for the expected format.
+Voir `data/README.md` pour le format attendu.
 
-## Current Caveats
+## Limites Actuelles
 
-- The current US setup has many `PRE_OPEN_SAME_DAY` entries, so the timing interpretation needs to be honest.
-- `close_cross` VWAP entries are easier to fill and can be optimistic.
-- `limit_touch` is more conservative and should be tested more deeply.
-- Full-sample profitability is not enough. The train/test and random tests are used to reject names that look overfit.
-- Duplicate or messy source filenames can create ticker presentation issues. The notebook flags these instead of hiding them.
+- La version US actuelle contient beaucoup d'entrées `PRE_OPEN_SAME_DAY`, donc il faut rester honnête sur l'interprétation temporelle.
+- Les entrées VWAP en `close_cross` sont plus faciles à remplir et peuvent être optimistes.
+- `limit_touch` est plus conservateur et doit être testé plus en profondeur.
+- Un résultat positif sur l'échantillon complet ne suffit pas. Les tests train/test et random servent justement à rejeter les noms probablement sur-optimisés.
+- Les noms de fichiers peuvent créer des problèmes de présentation des tickers. Le notebook les signale au lieu de les cacher.
 
-This is research work, not investment advice.
+Ce projet est un travail de recherche, pas un conseil d'investissement.

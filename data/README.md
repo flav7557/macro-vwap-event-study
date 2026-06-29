@@ -1,70 +1,70 @@
-# Data Inputs
+# Données D'entrée
 
-No raw data is committed to this repo. This folder only documents the input format expected by the backtest engine.
+Aucune donnée brute n'est commit dans ce repo. Ce dossier documente seulement le format attendu par le moteur de backtest.
 
-The engine needs two types of input:
+Le moteur a besoin de deux types d'entrées :
 
-- a macro workbook with release data and historical surprise metrics
-- one minute-level OHLCV CSV per stock
+- un fichier macro avec les publications et les métriques historiques de surprise
+- un CSV OHLCV minute par action
 
-## Macro Workbook
+## Fichier Macro
 
-The workbook can be `.xlsx` or `.ods`. It should contain two sheets.
+Le fichier peut être en `.xlsx` ou `.ods`. Il doit contenir deux feuilles.
 
 ### `data`
 
-One row per macro release.
+Une ligne par publication macro.
 
-Useful columns:
+Colonnes utiles :
 
-| column | meaning |
+| colonne | signification |
 | --- | --- |
-| `event_date` | release timestamp, ideally timezone-aware |
-| `country` | country code, for example `US` |
-| `event` | macro event name |
-| `estimate` | consensus estimate |
-| `actual` | released value |
-| `previous` | previous value, if available |
+| `event_date` | timestamp de publication, idéalement avec timezone |
+| `country` | code pays, par exemple `US` |
+| `event` | nom de l'événement macro |
+| `estimate` | consensus |
+| `actual` | valeur publiée |
+| `previous` | valeur précédente, si disponible |
 
 ### `METRIQ_FINISH`
 
-One row per macro event type with historical surprise metrics.
+Une ligne par type d'événement macro, avec les métriques historiques.
 
-Useful columns:
+Colonnes utiles :
 
-| column | meaning |
+| colonne | signification |
 | --- | --- |
-| `Country` | country code |
-| `events` | event name |
-| `macro_family` | event group |
-| `higher_is_good` | `YES`, `NO`, or `MIXED` |
-| `event_importance_guess` | rough importance score |
-| `valid_obs_count` | number of observations used for the metrics |
-| `surprise_avg_10y` | historical average surprise |
-| `surprise_std_10y` | historical surprise standard deviation |
-| `beat_rate_10y` | share of releases beating consensus |
+| `Country` | code pays |
+| `events` | nom de l'événement |
+| `macro_family` | famille de l'événement |
+| `higher_is_good` | `YES`, `NO` ou `MIXED` |
+| `event_importance_guess` | score approximatif d'importance |
+| `valid_obs_count` | nombre d'observations utilisées |
+| `surprise_avg_10y` | surprise moyenne historique |
+| `surprise_std_10y` | écart-type historique des surprises |
+| `beat_rate_10y` | part des publications au-dessus du consensus |
 
-The z-score is only clean if the historical average and standard deviation are computed before the tested period. If they are calculated using the same period as the backtest, the result can be too optimistic.
+Le z-score est vraiment propre seulement si la moyenne et l'écart-type historiques sont calculés avant la période testée. S'ils sont calculés sur la même période que le backtest, le résultat peut être trop optimiste.
 
-## Minute Price CSV
+## CSV De Prix Minute
 
-Use one CSV per stock.
+Utiliser un CSV par action.
 
-Expected columns:
+Colonnes attendues :
 
 ```text
 timestamp,open,high,low,close,volume
 2016-11-16 14:31:00+00,14.88,14.92,14.88,14.92,200
 ```
 
-Notes:
+Notes :
 
-- timestamps should be in UTC if possible
-- the data can be sparse for illiquid names
-- VWAP is computed intraday and reset each day
-- the ticker is usually inferred from the filename
+- les timestamps devraient être en UTC si possible
+- les données peuvent être clairsemées pour des actions peu liquides
+- le VWAP est calculé en intraday et remis à zéro chaque jour
+- le ticker est généralement extrait du nom du fichier
 
-Example filenames:
+Exemples de noms de fichiers :
 
 ```text
 lmb_dataset.csv
@@ -72,4 +72,4 @@ irtc_dataset.csv
 sam_dataset.csv
 ```
 
-The current local folder contains raw CSVs under `US-Actions/`, but that folder is ignored so it is not accidentally committed.
+Le dossier local actuel contient des CSV bruts dans `US-Actions/`, mais ce dossier est ignoré pour éviter de le publier par erreur.

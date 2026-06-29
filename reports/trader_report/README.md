@@ -1,13 +1,13 @@
-# Trader Report Outputs
+# Sorties Du Rapport Trader
 
-This folder is for the selected derived outputs used by the notebook.
+Ce dossier sert à stocker les sorties dérivées utilisées par le notebook.
 
-Expected layout:
+Structure attendue :
 
 ```text
 reports/trader_report/
 |-- figures/
-|   `-- selected PNG charts
+|   `-- graphiques PNG retenus
 |-- csv_outputs/
 |   |-- single_country_master_summary.csv
 |   |-- single_country_all_configs_summary.csv
@@ -15,7 +15,7 @@ reports/trader_report/
 |   |-- single_country_train_test.csv
 |   `-- single_country_walk_forward.csv
 `-- notes/
-    `-- short notes about missing files or manual choices
+    `-- notes courtes sur les fichiers manquants ou les choix manuels
 ```
 
-Only derived summary CSVs and final PNGs should go here. Raw price files and the macro workbook should stay out of the repo.
+Seuls les CSV de synthèse et les PNG finaux doivent aller ici. Les fichiers de prix bruts et le fichier macro doivent rester hors du repo.
