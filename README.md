@@ -27,7 +27,7 @@ macro-vwap-event-study/
     `-- README.md
 ```
 
-Les scripts Python restent le moteur du backtest. Le notebook sert de résumé lisible pour une revue trader.
+Les scripts Python restent le moteur du backtest. Le notebook sert de résumé lisible pour une revue .
 
 ## Ce Que Fait Le Backtest
 
