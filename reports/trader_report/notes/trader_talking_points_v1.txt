@@ -1,0 +1,15 @@
+Macro + VWAP screening — US
+============================================================
+
+Universe tested: 17 assets.
+Classification mix: C_VWAP_DRIVEN_OR_SUSPECT=7, D_REJECT=6, A_CLEAN_MACRO_SIGNAL=4
+
+Top candidates:
+- RVLV: A_CLEAN_MACRO_SIGNAL | DRIFT tol_bps close | full=0.365% | test=0.051% | random_pct=100% | cost_BE=50bps | score=86
+- SMTC: A_CLEAN_MACRO_SIGNAL | FADE strict 15min | full=0.161% | test=0.135% | random_pct=99% | cost_BE=20bps | score=82
+- VIAV: A_CLEAN_MACRO_SIGNAL | FADE tol_bps 30min | full=0.121% | test=0.087% | random_pct=100% | cost_BE=20bps | score=82
+
+Key caveats:
+- PRE_OPEN dominance means this should be described as macro calendar day + VWAP intraday, not exact minute-by-minute release trading.
+- Close-cross VWAP execution is the optimistic version; limit-touch is the conservative check.
+- Focus should be on assets that survive random side, random timestamps, costs, and chronological test.

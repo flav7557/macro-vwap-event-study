@@ -2,6 +2,14 @@
 
 Ce dossier sert à stocker les sorties dérivées utilisées par le notebook.
 
+Les fichiers actuellement présents correspondent à la V1 du backtest :
+
+```text
+macro_vwap_single_country_results_20260629_225714
+```
+
+Ce sont des résultats dérivés, pas les fichiers de prix bruts.
+
 Structure attendue :
 
 ```text

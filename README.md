@@ -99,6 +99,14 @@ Si des graphiques sont disponibles, placer les PNG retenus dans :
 reports/trader_report/figures/
 ```
 
+La V1 actuelle du repo inclut déjà les sorties du run :
+
+```text
+macro_vwap_single_country_results_20260629_225714
+```
+
+Elles sont rangées dans `reports/trader_report/csv_outputs/` et `reports/trader_report/figures/`.
+
 Puis ouvrir :
 
 ```text
