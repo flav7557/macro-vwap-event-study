@@ -1,0 +1,63 @@
+# Raw data and local inputs
+*.xlsx
+*.xls
+*.xlsm
+*.xltx
+*.ods
+*.parquet
+*.feather
+*.h5
+*.hdf5
+
+# Minute-price CSVs should stay local.
+data/*.csv
+data/**/*.csv
+US-Actions/
+US-Actions/**
+
+# Backtest result folders are usually regenerated locally.
+macro_vwap_single_country_results_*/
+macro_vwap_batch_results_*/
+**/macro_vwap_single_country_results_*/
+**/macro_vwap_batch_results_*/
+
+# Keep selected final report artifacts if they are safe to share.
+!reports/trader_report/
+!reports/trader_report/figures/
+!reports/trader_report/figures/*.png
+!reports/trader_report/csv_outputs/
+!reports/trader_report/csv_outputs/*.csv
+!reports/trader_report/notes/
+!reports/trader_report/notes/*.md
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Jupyter
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+*.tmp
