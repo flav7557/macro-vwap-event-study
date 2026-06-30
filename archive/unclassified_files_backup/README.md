@@ -1,7 +1,7 @@
-# Unclassified files backup
+﻿# Backup des fichiers non classes
 
-This folder is kept for safety.
+Ce dossier est garde par securite.
 
-If a file does not clearly belong to Test 01 or Test 02, it can be moved here instead of being deleted.
+Si un fichier ne rentre pas clairement dans le Test 01 ou le Test 02, il peut etre deplace ici au lieu d'etre supprime.
 
-At the moment, no unclear research file needed to be moved here.
+Pour l'instant, aucun fichier de recherche ambigu n'a eu besoin d'etre deplace ici.

@@ -1,32 +1,32 @@
-# Test 01 - US macro + VWAP screening
+﻿# Test 01 - Screening US macro + VWAP
 
-## What we are doing here
+## Ce que l'on fait ici
 
-This first test screens a basket of US stocks using a macro surprise signal and a VWAP execution filter.
+Ce premier test screen une selection d'actions US avec un signal de surprise macro et un filtre d'execution VWAP.
 
-The goal is not to prove a tradable strategy yet. The goal is to see whether some stocks behave better in DRIFT, some in FADE, and whether VWAP helps the entry.
+Le but n'est pas encore de prouver une strategie tradable. Le but est de voir si certaines actions reagissent mieux en DRIFT, d'autres en FADE, et si le VWAP aide a mieux cadrer l'entree.
 
-## What this test produced
+## Ce que ce test a produit
 
-This test produced:
+Ce test a produit :
 
-- classification of assets into clean / suspicious / rejected
-- top candidate assets
-- first robustness checks
-- first charts for the trader
+- une classification des actions entre propres / suspectes / rejetees
+- les premiers candidats interessants
+- les premiers tests de robustesse
+- les premiers graphiques pour une lecture trader
 
-## Main takeaway
+## Lecture principale
 
-The first version found several interesting names, but it also showed that some results might be VWAP-driven or too dependent on the full sample.
+La premiere version a trouve plusieurs noms interessants, mais elle a aussi montre que certains resultats pouvaient etre surtout VWAP-driven ou trop dependants du full-sample.
 
-## Main limitation
+## Limite principale
 
-Most US macro releases are pre-market, so this is better described as macro calendar day + VWAP intraday, not pure minute-by-minute reaction to macro releases.
+La plupart des publications macro US sont pre-market. Ce test doit donc etre lu comme "jour de calendrier macro + VWAP intraday", pas comme une reaction pure minute par minute aux publications macro.
 
-## Folder contents
+## Contenu du dossier
 
-- `scripts/` contains the first screening script
-- `notebooks/` contains the first readable research summary
-- `results/csv_outputs/` contains the V1 summary CSVs
-- `results/figures/` contains the V1 trader figures
-- `notes/` contains short notes from the first report
+- `scripts/` contient le script du premier screening
+- `notebooks/` contient le premier notebook de synthese
+- `results/csv_outputs/` contient les CSV de synthese V1
+- `results/figures/` contient les figures trader V1
+- `notes/` contient les notes courtes du premier rapport

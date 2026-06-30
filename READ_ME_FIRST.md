@@ -1,47 +1,47 @@
-# Read me first
+﻿# A lire en premier
 
-This project is organized by research tests.
+Ce projet est organise par tests de recherche.
 
-## How to read the project
+## Comment lire le projet
 
-1. Start with `research_tests/test_01_us_macro_vwap_screening/`
-   This is the first broad US screening.
+1. Commencer par `research_tests/test_01_us_macro_vwap_screening/`
+   C'est le premier screening large sur actions US.
 
-2. Then read `research_tests/test_02_train_test_validation/`
-   This is the stricter validation step. It explains why some names are rejected even if their full-sample return is positive.
+2. Lire ensuite `research_tests/test_02_train_test_validation/`
+   C'est l'etape de validation plus stricte. Elle explique pourquoi certains noms sont rejetes meme si leur rendement full-sample est positif.
 
 3. `research_tests/test_03_deep_dive_selected_assets/`
-   This is the next step and is not completed yet.
+   C'est la prochaine etape. Elle n'est pas encore terminee.
 
-## Current status
+## Statut actuel
 
-The project is currently at Test 02.
+Le projet est actuellement au Test 02.
 
-The cleanest current names are:
+Les noms les plus propres actuellement sont :
 
 - SMTC
 - VIAV
 
-RVLV and SAM are still interesting but more fragile.
+RVLV et SAM restent interessants mais plus fragiles.
 
-REAL and IRTC remain watchlist names, but the signal looks more VWAP-driven or less clearly macro-directional.
+REAL et IRTC restent en watchlist, mais le signal semble plus VWAP-driven ou moins clairement macro-directionnel.
 
-## Main warning
+## Avertissement principal
 
-Most US macro releases are pre-market. So the current setup should be interpreted as:
-
-```text
-macro calendar day + VWAP intraday
-```
-
-not:
+La plupart des publications macro US ont lieu avant l'ouverture du marche actions. Donc le setup actuel doit etre interprete comme :
 
 ```text
-pure minute-by-minute reaction to the exact macro release timestamp
+jour de calendrier macro + VWAP intraday
 ```
 
-## Where things are
+et non comme :
 
-- each test has its own scripts, notebooks, results, figures and notes
-- shared data format information is in `shared/data_format/`
-- old or unclear files are kept in `archive/`
+```text
+reaction pure minute par minute au timestamp exact de publication macro
+```
+
+## Ou sont les fichiers
+
+- chaque test a ses propres scripts, notebooks, resultats, figures et notes
+- le format des donnees est explique dans `shared/data_format/`
+- les anciens fichiers ou fichiers incertains sont gardes dans `archive/`

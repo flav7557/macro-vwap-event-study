@@ -1,4 +1,4 @@
-# Donnees d'entree
+﻿# Donnees d'entree
 
 Aucune donnee brute n'est commit dans ce repo. Ce dossier sert seulement a expliquer le format attendu par le moteur de backtest.
 
@@ -8,8 +8,8 @@ Pour ce premier travail, j'ai utilise environ 10 ans de donnees en timeframe 1 m
 
 Le fichier macro doit contenir au minimum deux feuilles :
 
-- `data` : les publications macro, avec les colonnes comme `event_date`, `country`, `event`, `actual`, `estimate`, `previous`
-- `METRIQ_FINISH` : les metriques historiques de surprise, avec les colonnes comme `Country`, `events`, `higher_is_good`, `surprise_avg_10y`, `surprise_std_10y`
+- `data` : les publications macro, avec des colonnes comme `event_date`, `country`, `event`, `actual`, `estimate`, `previous`
+- `METRIQ_FINISH` : les metriques historiques de surprise, avec des colonnes comme `Country`, `events`, `higher_is_good`, `surprise_avg_10y`, `surprise_std_10y`
 
 L'idee est de calculer :
 

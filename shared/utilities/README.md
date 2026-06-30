@@ -1,3 +1,3 @@
-﻿# Shared utilities
+﻿# Utilitaires partages
 
-This folder is reserved for small common helper scripts if the project needs them later.
+Ce dossier est reserve aux petits scripts communs si le projet en a besoin plus tard.

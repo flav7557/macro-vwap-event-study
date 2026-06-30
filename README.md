@@ -1,18 +1,18 @@
-# Macro VWAP Event Study
+﻿# Macro VWAP Event Study
 
-This repo is my research project on US macro surprise days and VWAP-based intraday execution.
+Ce repo presente mon etude sur les journees de surprises macro US et une execution intraday basee sur le VWAP.
 
-The goal is not to claim that the strategy is ready to trade. The goal is to document the research step by step, so a trader can see what was tested, what improved, and why some names are selected or rejected.
+Le but n'est pas de dire que la strategie est prete a trader. Le but est de documenter la recherche etape par etape, pour qu'un trader puisse voir ce qui a ete teste, ce qui a change, et pourquoi certains noms sont retenus ou rejetes.
 
-Start here:
+Commencer ici :
 
 ```text
 READ_ME_FIRST.md
 ```
 
-## How the repo is organized
+## Organisation du repo
 
-The repo is organized by research test, not only by file type.
+Le repo est organise par test de recherche, pas seulement par type de fichier.
 
 ```text
 research_tests/
@@ -21,65 +21,65 @@ research_tests/
 `-- test_03_deep_dive_selected_assets/
 ```
 
-Each test folder contains its own:
+Chaque dossier de test contient ses propres :
 
 - scripts
 - notebooks
-- results
+- resultats
 - figures
 - notes
 
-## What each test means
+## Ce que signifie chaque test
 
 ### Test 01 - US macro + VWAP screening
 
-This was the first broad screening.
+C'etait le premier screening large.
 
-It tested whether US macro surprise days, combined with VWAP execution, could identify interesting short-term patterns across selected US equities.
+L'objectif etait de tester si les journees de surprise macro US, combinees a une execution VWAP, pouvaient faire ressortir des patterns court terme interessants sur une selection d'actions US.
 
-Folder:
+Dossier :
 
 ```text
 research_tests/test_01_us_macro_vwap_screening/
 ```
 
-### Test 02 - Cleaner train/test validation
+### Test 02 - Validation train/test plus propre
 
-This is the current completed stage.
+C'est l'etape actuelle terminee.
 
-It checks whether the rule selected on the earlier part of the data still works on the later test period. This is important because a full-sample backtest can look good while the train-selected rule fails out-of-sample.
+On verifie si la regle selectionnee sur la premiere partie de l'historique fonctionne encore sur la periode de test plus recente. C'est important parce qu'un backtest full-sample peut etre positif alors que la regle selectionnee sur le train echoue hors echantillon.
 
-Folder:
+Dossier :
 
 ```text
 research_tests/test_02_train_test_validation/
 ```
 
-### Test 03 - Deep dive on selected assets
+### Test 03 - Deep dive sur les actifs selectionnes
 
-This is the next planned stage.
+C'est la prochaine etape prevue.
 
-It will focus only on the strongest or most interesting names from Test 02.
+Elle se concentrera seulement sur les noms les plus forts ou les plus interessants du Test 02.
 
-Folder:
+Dossier :
 
 ```text
 research_tests/test_03_deep_dive_selected_assets/
 ```
 
-## Current results
+## Resultats actuels
 
-Current cleanest names from Test 02:
+Noms les plus propres du Test 02 :
 
 - SMTC
 - VIAV
 
-Interesting but more fragile:
+Interessants mais plus fragiles :
 
 - RVLV
 - SAM
 
-Watchlist / more VWAP-driven:
+Watchlist / plus VWAP-driven :
 
 - REAL
 - IRTC
@@ -87,7 +87,7 @@ Watchlist / more VWAP-driven:
 - PLAY
 - VSAT
 
-Rejected despite positive full-sample returns:
+Rejetes malgre un rendement full-sample positif :
 
 - BOOT
 - ENVX
@@ -96,26 +96,26 @@ Rejected despite positive full-sample returns:
 - LUMN
 - VREX
 
-## Data
+## Donnees
 
-Raw minute data is not included in the repo.
+Les donnees brutes minute ne sont pas incluses dans le repo.
 
-For this study I used around 10 years of 1-minute stock data. The files are heavy and are not uploaded here. If someone needs the exact raw files, I can send them by mail.
+Pour cette etude, j'ai utilise environ 10 ans de donnees actions en timeframe 1 minute. Les fichiers sont lourds et ne sont pas uploades ici. Si quelqu'un veut les fichiers bruts exacts, je peux les envoyer par mail.
 
-The expected data format is explained here:
+Le format attendu des donnees est explique ici :
 
 ```text
 shared/data_format/README.md
 ```
 
-## Main warning
+## Avertissement principal
 
-Most US macro releases are pre-market.
+La plupart des publications macro US sont pre-market.
 
-So this should be interpreted as:
+Donc ce travail doit etre interprete comme :
 
 ```text
-macro calendar day + VWAP intraday
+jour de calendrier macro + VWAP intraday
 ```
 
-not as a pure minute-by-minute reaction to the release timestamp.
+et pas comme une reaction pure minute par minute au timestamp de publication.

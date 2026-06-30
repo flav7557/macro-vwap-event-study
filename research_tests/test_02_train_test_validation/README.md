@@ -1,34 +1,34 @@
-# Test 02 - Cleaner train/test validation
+﻿# Test 02 - Validation train/test plus propre
 
-## What we are doing here
+## Ce que l'on fait ici
 
-In Test 01, some stocks looked profitable on the full sample. In Test 02, we check whether the rule selected on the earlier part of the data still works on the later test period.
+Dans le Test 01, certaines actions semblaient profitables sur tout l'echantillon. Dans le Test 02, on verifie si la regle selectionnee sur la premiere partie des donnees fonctionne encore sur la periode de test plus recente.
 
-The idea is simple:
+L'idee est simple :
 
-- select the best rule on the training period
-- apply the same rule on the test period
-- reject the asset if it loses money on the test period
+- selectionner la meilleure regle sur la periode train
+- appliquer exactement la meme regle sur la periode test
+- rejeter l'action si elle perd de l'argent sur la periode test
 
-## What changed vs Test 01
+## Ce qui change vs Test 01
 
-Test 02 makes the validation stricter.
+Le Test 02 rend la validation plus stricte.
 
-A stock can now be rejected even if its full-sample return is positive, because what matters is whether the rule works out-of-sample.
+Une action peut maintenant etre rejetee meme si son rendement full-sample est positif, parce que ce qui compte est de savoir si la regle fonctionne hors echantillon.
 
-## Main current result
+## Resultat actuel principal
 
-The cleanest names from Test 02 are:
+Les noms les plus propres du Test 02 sont :
 
 - SMTC
 - VIAV
 
-Interesting but more fragile:
+Interessants mais plus fragiles :
 
 - RVLV
 - SAM
 
-Watchlist / more VWAP-driven:
+Watchlist / plus VWAP-driven :
 
 - REAL
 - IRTC
@@ -36,7 +36,7 @@ Watchlist / more VWAP-driven:
 - PLAY
 - VSAT
 
-Rejected despite positive full-sample returns:
+Rejetes malgre des rendements full-sample positifs :
 
 - BOOT
 - ENVX
@@ -45,16 +45,16 @@ Rejected despite positive full-sample returns:
 - LUMN
 - VREX
 
-## Why some profitable names are rejected
+## Pourquoi certains noms profitables sont rejetes
 
-These names are not rejected because they never made money. They are rejected because the full-sample result looked positive, but the rule selected on the train period lost money on the test period.
+Ces noms ne sont pas rejetes parce qu'ils n'ont jamais gagne d'argent. Ils sont rejetes parce que le resultat full-sample semblait positif, mais la regle selectionnee sur la periode train perdait de l'argent sur la periode test.
 
-This is a warning that the result may be overfit or regime-dependent.
+C'est un signal que le resultat peut etre overfit ou dependant d'un regime precis.
 
-## Folder contents
+## Contenu du dossier
 
-- `scripts/` contains the note about the V2 script status
-- `notebooks/` contains the V2 train/test notebook
-- `results/csv_outputs/` contains the latest V2 summary CSVs
-- `results/figures/` contains V2 figures
-- `notes/` contains notes about the V2 outputs and known naming issues
+- `scripts/` contient la note sur le statut du script V2
+- `notebooks/` contient le notebook train/test V2
+- `results/csv_outputs/` contient les CSV de synthese V2
+- `results/figures/` contient les figures V2
+- `notes/` contient les notes sur les sorties V2 et les problemes de noms de tickers

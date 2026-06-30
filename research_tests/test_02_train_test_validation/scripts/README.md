@@ -1,14 +1,14 @@
-# V2 script note
+﻿# Note sur le script V2
 
-The exact Python script used to generate the V2 run was not present in the local files I received.
+Le script Python exact utilise pour generer le run V2 n'etait pas present dans les fichiers locaux recus.
 
-The V2 outputs are included here:
+Les sorties V2 sont incluses ici :
 
 ```text
-reports/v2_train_test_clean/
+research_tests/test_02_train_test_validation/results/
 ```
 
-The key change in V2 is visible in the output columns:
+Le changement principal de V2 est visible dans les colonnes de sortie :
 
 - `selected_on_train_*`
 - `train_ret_moy_pct`
@@ -16,7 +16,7 @@ The key change in V2 is visible in the output columns:
 - `test_status`
 - `train_test_explanation`
 
-If I recover the exact V2 engine script, it should be added to this folder as:
+Si je retrouve le moteur exact V2, il faudra l'ajouter dans ce dossier sous le nom :
 
 ```text
 macro_event_backtester_single_country_20stocks_train_test_clean.py

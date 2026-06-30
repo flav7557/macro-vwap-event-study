@@ -1,36 +1,36 @@
-# Changelog
+﻿# Changelog
 
-## V2 - Cleaner train/test validation
+## V2 - Validation train/test plus propre
 
-Date: 2026-06-30
+Date : 2026-06-30
 
-Main change:
+Changement principal :
 
-The model now makes the chronological train/test validation more explicit. It distinguishes between full-sample profitability and out-of-sample test performance.
+Le modele rend maintenant la validation chronologique train/test plus explicite. Il distingue mieux la profitabilite full-sample et la performance sur la periode de test hors echantillon.
 
-Key findings from V2:
+Points importants de V2 :
 
-- A-class names: SMTC, VIAV
-- B-class names: RVLV, SAM
-- C / watchlist names: REAL, IRTC, LMB, PLAY, VSAT, BLFS, GPRO
-- Rejected names: BOOT, ENVX, KOP, LMND, LUMN, VREX
+- noms A-class : SMTC, VIAV
+- noms B-class : RVLV, SAM
+- watchlist / C : REAL, IRTC, LMB, PLAY, VSAT, BLFS, GPRO
+- noms rejetes : BOOT, ENVX, KOP, LMND, LUMN, VREX
 
-Important point:
+Point important :
 
-Several names had positive full-sample returns but were rejected because the rule selected on the training period lost money on the test period.
+Plusieurs noms avaient des rendements full-sample positifs mais ont ete rejetes parce que la regle selectionnee sur la periode train perdait de l'argent sur la periode test.
 
-Main warning:
+Avertissement principal :
 
-Most US macro releases are pre-market, so this should be interpreted as a "macro calendar day + VWAP intraday" framework, not a pure minute-by-minute reaction to macro releases.
+La plupart des publications macro US sont pre-market. Le framework doit donc etre interprete comme "jour de calendrier macro + VWAP intraday", pas comme une reaction pure minute par minute aux publications macro.
 
-## V1 - First US macro + VWAP screening
+## V1 - Premier screening US macro + VWAP
 
-Date: 2026-06-29
+Date : 2026-06-29
 
-Main change:
+Changement principal :
 
-First broad US screening using macro surprise signal + VWAP execution.
+Premier screening large US avec signal de surprise macro + execution VWAP.
 
-Key purpose:
+Objectif :
 
-Identify which US stocks might show directional or contrarian behaviour around macro release days.
+Identifier quelles actions US pourraient montrer un comportement directionnel ou contrariant autour des jours de publications macro.

@@ -1,10 +1,10 @@
-# Old outputs archive
+﻿# Archive des anciens outputs
 
-This folder is reserved for older local outputs if they need to be kept for traceability.
+Ce dossier est reserve aux anciens outputs locaux si on veut les garder pour tracabilite.
 
-The selected shareable outputs are now versioned under:
+Les sorties selectionnees et partageables sont maintenant rangees par test dans :
 
 ```text
-reports/v1_us_screening/
-reports/v2_train_test_clean/
+research_tests/test_01_us_macro_vwap_screening/
+research_tests/test_02_train_test_validation/
 ```

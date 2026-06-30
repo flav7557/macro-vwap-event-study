@@ -1,33 +1,33 @@
-# Project status
+﻿# Statut du projet
 
-## Current stage
+## Etape actuelle
 
-Test 02 completed - cleaner train/test validation.
+Test 02 termine - validation train/test plus propre.
 
-## Research path
+## Chemin de recherche
 
 ### Test 01 - US macro + VWAP screening
 
-Question:
+Question :
 
-Can macro surprise days + VWAP execution identify interesting patterns across selected US equities.
+Tester si les journees de surprise macro + une execution VWAP peuvent faire ressortir des patterns interessants sur une selection d'actions US.
 
-Result:
+Resultat :
 
-Some names looked promising, but the first version needed stricter validation.
+Certains noms semblaient prometteurs, mais la premiere version avait besoin d'une validation plus stricte.
 
-### Test 02 - Cleaner train/test validation
+### Test 02 - Validation train/test plus propre
 
-Question:
+Question :
 
-Do the rules selected on the earlier period still work on the later period.
+Verifier si les regles selectionnees sur la periode ancienne fonctionnent encore sur la periode plus recente.
 
-Result:
+Resultat :
 
-SMTC and VIAV are the cleanest names. RVLV and SAM remain interesting but more fragile. Several names are rejected because they fail the chronological test period.
+SMTC et VIAV sont les noms les plus propres. RVLV et SAM restent interessants mais plus fragiles. Plusieurs noms sont rejetes parce qu'ils echouent sur la periode de test chronologique.
 
-### Test 03 - Deep dive on selected assets
+### Test 03 - Deep dive sur les actifs selectionnes
 
-Next question:
+Prochaine question :
 
-For the strongest names, identify where the edge actually comes from: macro direction, VWAP execution, event type, or pre-market behaviour.
+Pour les meilleurs noms, comprendre d'ou vient vraiment l'edge : direction macro, execution VWAP, type d'evenement, comportement pre-market, ou combinaison de plusieurs facteurs.

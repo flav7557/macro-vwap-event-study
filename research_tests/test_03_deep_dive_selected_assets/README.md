@@ -1,10 +1,10 @@
-# Test 03 - Deep dive on selected assets
+﻿# Test 03 - Deep dive sur les actifs selectionnes
 
-## What we will do next
+## Ce que l'on fera ensuite
 
-This test will focus only on the strongest candidates from Test 02.
+Ce test se concentrera seulement sur les meilleurs candidats du Test 02.
 
-Potential assets:
+Actifs possibles :
 
 - SMTC
 - VIAV
@@ -13,20 +13,20 @@ Potential assets:
 - REAL
 - IRTC
 
-The goal will be to understand whether the edge comes from:
+Le but sera de comprendre si l'edge vient de :
 
-- macro direction
-- VWAP execution
-- specific macro event types
-- specific years
-- pre-market behaviour
-- or a combination of these
+- la direction macro
+- l'execution VWAP
+- certains types d'evenements macro
+- certaines annees
+- le comportement pre-market
+- ou une combinaison de ces facteurs
 
-Potential next checks:
+Controles possibles :
 
-- increase random simulations to 500
-- compare close_cross vs limit_touch
-- inspect performance by year
-- inspect top event types
-- inspect DRIFT vs FADE by asset
-- check cost sensitivity more carefully
+- augmenter les simulations random a 500
+- comparer `close_cross` et `limit_touch`
+- regarder la performance par annee
+- regarder les principaux types d'evenements
+- inspecter DRIFT vs FADE par action
+- verifier plus proprement la sensibilite aux couts
